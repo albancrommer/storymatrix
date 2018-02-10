@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "detect-character-encoding": "^0.5.1",
+    "escpos": "^2.4.5",
+    "iconv": "^2.3.0",
+    "keypress": "^0.2.1",
+    "libinkle": "^0.0.2"
+  }
+}
