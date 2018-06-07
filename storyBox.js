@@ -54,7 +54,7 @@ function printChunk(message, options){
     for( i = 0; i < message.length ; i++ ){
         bit = message[i]
         fs.writeFileSync( "/tmp/buffer", options+"\n"+bit );
-        code = execSync('/usr/bin/php php-print/print.php '+options);
+//        code = execSync('/usr/bin/php php-print/print.php '+options);
     }
 }
 
@@ -70,10 +70,14 @@ process.stdin.on('keypress', function (ch, key) {
     if (key && key.ctrl && key.name === 'c') {
         process.stdin.pause();
     }
-    if (!_.has(key, 'sequence')) {
-        return;
+    if (key && key.name === 'escape') {
+        console.log( "Back to beginning");
     }
-    chosenKey = key.sequence;
+    if (key && key.name === 'tab') {
+        console.log( "tab hit");
+    }
+console.log( ch, key )
+    chosenKey = ch||key.sequence;
     if (_.indexOf(inkle.keySet, chosenKey) === -1) {
         return;
     }
