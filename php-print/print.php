@@ -1,4 +1,5 @@
 <?php
+
 require __DIR__ . '/vendor/autoload.php';
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
@@ -6,7 +7,9 @@ $connector = new FilePrintConnector("/dev/usb/lp0");
 $printer = new Printer($connector);
 
 $fileContent = file("/tmp/buffer");
-// fwrite(STDERR, "file: ".print_r($fileContent,1)."\n" );
+//fwrite(STDERR, "file: ".print_r($fileContent,1)."\n" );
+//$printer -> close(); exit(0);
+
 $options_string = array_shift( $fileContent);
 $text = implode("\n",$fileContent );
 $options = json_decode( $options_string, true);
@@ -22,7 +25,7 @@ $feedBefore = array_key_exists( 'feedBefore', $options ) ? $options['feedBefore'
 
 
 
-$text = wordwrap( $text, 49, "\n");
+$text = wordwrap( $text, 48, "\n");
 $paragraphList = explode(  "\n", $text );
 
 $printer->setJustification( $align );
@@ -34,6 +37,7 @@ foreach( $paragraphList as $p ){
     if( $p == "" ){
         continue;
     }
+
     $printer -> text($p."\n");
    }
 if( $feedAfter ){
@@ -46,3 +50,17 @@ if( $doCut ){
 }
 $printer -> close();
 
+function _convert($content) { 
+    if(!mb_check_encoding($content, 'UTF-8') 
+        OR !($content === mb_convert_encoding(mb_convert_encoding($content, 'UTF-32', 'UTF-8' ), 'UTF-8', 'UTF-32'))) {
+
+        $content = mb_convert_encoding($content, 'UTF-8'); 
+
+        if (mb_check_encoding($content, 'UTF-8')) { 
+            // log('Converted to UTF-8'); 
+        } else { 
+            // log('Could not converted to UTF-8'); 
+        } 
+    } 
+    return $content; 
+} 
