@@ -15,7 +15,6 @@ const libinkle = require('libinkle');
 const execSync = require('child_process').execSync;
 const feedAfter = 2;
 
-
 function shellescape(a) {
   var ret = [];
 
@@ -109,6 +108,7 @@ game.start = function(chosenKey){
 	inkle.getChoicesByKeys();
 	game.stage = "play";
 }
+
 game.progress = function( chosenKey ){
 
     if (_.indexOf(inkle.keySet, chosenKey) === -1) {
@@ -122,10 +122,8 @@ game.progress = function( chosenKey ){
     inkle.getChoicesByKeys();
     if (inkle.isFinished()) {
         //process.stdin.pause();
-	game.stage = "init"
-	game.choose();
+        game.chooseStory();
     }
-
 }
 
 // make `process.stdin` begin emitting "keypress" events
@@ -141,16 +139,13 @@ process.stdin.on('keypress', function (ch, key) {
 	return
     }
     if ((key && key.name === 'escape') || (key && key.name === 'tab')) {
-    	game.choose()
+    	game.chooseStory()
 	return
     }
     chosenKey = ch||key.sequence;
     switch( game.stage ) {
 	case "chooseLibrary" : 
 		game.chooseLibrary(chosenKey)
-	break;
-	case "chosenStory" :
-		game.chosenStory( chosenKey ); 
 	break;
 	case "start" : 
 		game.start(chosenKey)
