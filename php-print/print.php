@@ -3,6 +3,12 @@
 require __DIR__ . '/vendor/autoload.php';
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
+$conf_file = __DIR__."/config.php";
+if( !is_file($conf_file)){
+  die( "Missing $conf_file. Exiting.");
+}
+require( $conf_file );
+
 $connector = new FilePrintConnector("/dev/usb/lp0");
 $printer = new Printer($connector);
 
