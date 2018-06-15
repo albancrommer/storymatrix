@@ -8,13 +8,22 @@ if( !is_file($conf_file)){
   die( "Missing $conf_file. Exiting.");
 }
 require( $conf_file );
+function panic( $msg){ echo "$msg\n"; exit(2); }
+if( ! $device ) {
+   panic( "Please provide a device.");
+}
+$devtype = filetype( $device);
+if( false === $devtype )  {
+    panic("Device $device does not exist.");
+}
+if( "char" != $devtype )  {
+    panic("Device $device has invalid type : $devtype");
+}
 
-$connector = new FilePrintConnector("/dev/usb/lp0");
+$connector = new FilePrintConnector($device);
 $printer = new Printer($connector);
 
 $fileContent = file("/tmp/buffer");
-//fwrite(STDERR, "file: ".print_r($fileContent,1)."\n" );
-//$printer -> close(); exit(0);
 
 $options_string = array_shift( $fileContent);
 $text = implode("\n",$fileContent );
