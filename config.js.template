@@ -4,14 +4,20 @@ module.exports = {
     ['Français',[
         ['8v99','Le prince du Val Fourre'],
         ['8b3c','Un meurtre blanc'],
-        ['jzfd','Fond de Cale']
+        ['jzfd','Fond de Cale'],
+        ['hdr2',"Merlyn, le Chat de l'Espace"],
+        ['zdcx','Cosmorêve et le katana du temps'],
     ]],
     ['Anglais',[ 
         ['g9mj','Cogito Ergo Sum'],
+        ['n8zc','Seventh'],
+        ['3484','Eminent Domain'],
+        ['8xbx','The Song of Urho'],
     ]],
     ['TFTL',[
-        ['nxvg','OVNI surprise'],
+        ['nxvg',"Un soir d'été"],
     ]]
   ]
 
 };
+ 
