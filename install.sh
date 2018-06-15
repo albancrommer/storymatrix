@@ -13,7 +13,7 @@ if [[ -f /usr/bin/raspi-config ]]; then
     echo -e "\n\nRappel: \n[5:Interfacing]\n  -->[6:serial]\n    -->[serial shell:No]\n    -->[activate port:YES]\n"
     echo "Chargement en cours..."
     sleep 3
-    /usr/bin/raspi-config
+    sudo /usr/bin/raspi-config
     echo -e "\nRebooting in "
     for i in {3..1}; do echo -n "${i}... "; sleep 1; done 
     reboot
