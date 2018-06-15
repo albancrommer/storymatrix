@@ -33,6 +33,10 @@ if [[ ! -f "${PHP_CONFIG}" ]] ; then
   sed -i "s=%DEVICE%=$DEVICE=" "${PHP_CONFIG}"
 fi
 
+# Create the config.sh file
+JS_CONFIG="${APP_PATH}/config.js"
+[[ -f "$JS_CONFIG" ]] || cp "$JS_CONFIG".template "$JS_CONFIG" 
+
 # Some debian packages install
 which node &>/dev/null || packageList+=( nodejs )
 which npm &>/dev/null || packageList+=( npm )

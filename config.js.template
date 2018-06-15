@@ -1,0 +1,16 @@
+module.exports = {
+  'library' : [
+    ['Français',[
+        ['8v99','Le prince du Val Fourre'],
+        ['8b3c','Un meurtre blanc'],
+        ['jzfd','Fond de Cale']
+    ]],
+    ['Anglais',[ 
+        ['g9mj','Cogito Ergo Sum'],
+    ]],
+    ['TFTL',[
+        ['nxvg','OVNI surprise'],
+    ]]
+  ]
+
+};

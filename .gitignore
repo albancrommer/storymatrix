@@ -1,4 +1,5 @@
-node_modules/
 *.swp
 /nbproject
+config.js
 config.php
+node_modules/
