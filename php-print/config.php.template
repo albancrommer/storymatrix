@@ -1,3 +1,4 @@
 <?php
 // Example for old raspberries : $device="/dev/ttyAMA0"
 $device="%DEVICE%"
+        

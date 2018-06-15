@@ -21,12 +21,12 @@ if [[ -f /usr/bin/raspi-config ]]; then
 fi
 
 # Create the printer config file for php
-PHP_CONFIG="${APP_PATH}/config.php"
+PHP_CONFIG="${APP_PATH}/php-print/config.php"
 if [[ ! -f "${PHP_CONFIG}" ]] ; then 
   echo -e "\nQuel device d'imprimante souhaitez-vous utiliser ?"
   echo "  Ex: /dev/ttyAMAO pour les imprimantes ADAFRUIT sur raspberry (choix par défaut)"
   echo -e "  Ex: /dev/usb/lp0 pour certains imprimantes thermiques standards\n"
-  read -n 1 -p "Merci de fournir votre device: " DEVICE
+  read -p "Merci de fournir votre device: " DEVICE
   DEVICE=${DEVICE:-/dev/ttyAMAO}
   [[ ! -e "$DEVICE" ]] && panic "Désolé, $DEVICE n'existe pas."
   cp "${PHP_CONFIG}.template" "${PHP_CONFIG}"
