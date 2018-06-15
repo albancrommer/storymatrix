@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "keypress": "^4.17.10",
+    "lodash": "^4.17.10",
     "keypress": "^0.2.1",
     "libinkle": "^0.0.2"
   }
