@@ -27,10 +27,10 @@ if [[ ! -f "${PHP_CONFIG}" ]] ; then
   echo "  Ex: /dev/ttyAMAO pour les imprimantes ADAFRUIT sur raspberry (choix par défaut)"
   echo -e "  Ex: /dev/usb/lp0 pour certains imprimantes thermiques standards\n"
   read -p "Merci de fournir votre device: " DEVICE
-  DEVICE=${DEVICE:-/dev/ttyAMAO}
-  [[ ! -e "$DEVICE" ]] && panic "Désolé, $DEVICE n'existe pas."
+  DEVICE=${DEVICE:-"/dev/ttyAMA0"}
+  [[ -e "$DEVICE" ]] || panic "Désolé, $DEVICE n'existe pas."
   cp "${PHP_CONFIG}.template" "${PHP_CONFIG}"
-  sed -i "s/%DEVICE%/$DEVICE/" "${PHP_CONFIG}"
+  sed -i "s=%DEVICE%=$DEVICE=" "${PHP_CONFIG}"
 fi
 
 # Some debian packages install
