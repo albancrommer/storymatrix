@@ -15,6 +15,7 @@ const path = require('path');
 const libinkle = require('libinkle');
 const execSync = require('child_process').execSync;
 const feedAfter = 2;
+const maxDelay = config.maxDelay || 1500;
 
 function shellescape(a) {
   var ret = [];
@@ -116,6 +117,7 @@ game.progress = function( chosenKey ){
         return;
     }
     // Progress story
+    game.setNewDelay();
     inkle.choose(inkle.getChoicesByName()[chosenKey]);
     printChunk('#'+game.chunkCount,{alignRight:true});
     game.chunkCount++;
@@ -125,7 +127,19 @@ game.progress = function( chosenKey ){
         //process.stdin.pause();
         game.end();
     }
-}
+};
+
+game.setNewDelay = function(){
+  game.delay = new Date();
+  
+};
+game.forceDelay = function(){
+  now = new Date();
+  if ( now - game.delay  < 1500 ){
+    return false;
+  }
+  return true;
+};
 
 // make `process.stdin` begin emitting "keypress" events
 keypress(process.stdin);
@@ -135,6 +149,10 @@ game.printLibrary()
 
 // listen for the "keypress" event
 process.stdin.on('keypress', function (ch, key) {
+  
+    if( ! game.forceDelay()){
+      return false;
+    }
     if (key && key.ctrl && key.name === 'c') {
         process.stdin.pause();
     return
