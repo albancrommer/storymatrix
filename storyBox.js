@@ -17,6 +17,7 @@ const libinkle = require('libinkle');
 const execSync = require('child_process').execSync;
 const feedAfter = 2;
 const maxDelay = config.maxDelay || 1500;
+const ttyPrint = config.ttyPrint || false;
 
 function shellescape(a) {
   var ret = [];
@@ -41,8 +42,11 @@ function printChunk(message, options){
     for( i = 0; i < message.length ; i++ ){
         bit = message[i]
         fs.writeFileSync( "/tmp/buffer", options+"\n"+bit );
-        // code = execSync('/usr/bin/php php-print/print.php '+options);
-        console.log( bit );
+        if( ttyPrint ){
+            console.log( bit );
+        }else{
+            code = execSync('/usr/bin/php php-print/print.php '+options);
+        }
     }
 }
 

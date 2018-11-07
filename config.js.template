@@ -1,4 +1,5 @@
 module.exports = {
+  'ttyPrint' : false,
   'maxDelay' : 1500,
   'library' : [
     ['Français',[
