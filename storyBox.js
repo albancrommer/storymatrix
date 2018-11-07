@@ -1,3 +1,4 @@
+#!/usr/bin/node
 /*
  *  A Command Line Interface example
  *
