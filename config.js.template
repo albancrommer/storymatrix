@@ -14,7 +14,8 @@ module.exports = {
         ['3484','Eminent Domain'],
         ['8xbx','The Song of Urho'],
     ]],
-    ['TFTL',[
+    ['Tales From The Loop',[
+        ['6rhb',"Panique au collège"],
         ['nxvg',"Un soir d'été"],
     ]]
   ]
